@@ -1,0 +1,8 @@
+/Dockerfile
+Dockerfile-
+ignore$
+\.json$
+\.patch$
+\.png$
+^LICENSE$
+^\.github/
