@@ -12,14 +12,14 @@ module.exports = HoldingAccountMigration =
 
 	deleteUserProjects: (user_id, callback = (error) ->) ->
 		# Holding accounts can't own projects, so only remove from 
-		# collaberator_refs and readOnly_refs
+		# collaborator_refs and readOnly_refs
 		console.log "[Removing user from projects]", user_id
 		db.projects.find {
 			$or: [
-				{collaberator_refs: user_id},
+				{collaborator_refs: user_id},
 				{readOnly_refs: user_id}
 			]
-		}, { collaberator_refs: 1, readOnly_refs: 1 }, (error, projects = []) ->
+		}, { collaborator_refs: 1, readOnly_refs: 1 }, (error, projects = []) ->
 			return callback(error) if error?
 			jobs = projects.map (project) ->
 				(cb) ->
@@ -32,7 +32,7 @@ module.exports = HoldingAccountMigration =
 							_id: project._id
 						}, {
 							$pull: {
-								collaberator_refs: user_id,
+								collaborator_refs: user_id,
 								readOnly_refs: user_id
 							}
 						}, (error, result) ->
