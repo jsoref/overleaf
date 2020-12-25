@@ -1,5 +1,5 @@
---- CreateAndDestoryUsers.coffee
-+++ CreateAndDestoryUsers.coffee
+--- CreateAndDestroyUsers.coffee
++++ CreateAndDestroyUsers.coffee
 @@ -21,7 +21,7 @@ module.exports = (grunt) ->
  			user.save (error) ->
  				throw error if error?
